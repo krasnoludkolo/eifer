@@ -1,0 +1,100 @@
+apply plugin: 'java'
+
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'jacoco'
+
+group 'io.github.krasnoludkolo'
+version '0.1'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.vavr:vavr:0.10.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives jar
+
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: project.hasProperty('ossrhUsername') ? project.property('ossrhUsername') : System.getenv('ossrhUsername'), password: project.hasProperty('ossrhPassword') ? project.property('ossrhPassword') : System.getenv('ossrhPassword'))
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: project.hasProperty('ossrhUsername') ? project.property('ossrhUsername') : System.getenv('ossrhUsername'), password: project.hasProperty('ossrhPassword') ? project.property('ossrhPassword') : System.getenv('ossrhPassword'))
+            }
+
+            pom.project {
+                name 'eifer'
+                packaging 'jar'
+                description 'Simple way to use Either in domain'
+                url 'https://github.com/krasnoludkolo/eifer'
+
+                inceptionYear '2019'
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                scm {
+                    url 'scm:git@github.com:krasnoludkolo/haste.git'
+                    connection 'scm:git@github.com:krasnoludkolo/haste.git'
+                    developerConnection 'scm:git@github.com:krasnoludkolo/haste.git'
+                }
+
+                developers {
+                    developer {
+                        name 'Jan Danecki'
+                        email 'janek@projmen.pl'
+                    }
+                }
+            }
+        }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+check.dependsOn jacocoTestReport
