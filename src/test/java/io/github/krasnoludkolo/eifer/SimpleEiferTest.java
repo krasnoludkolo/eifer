@@ -1,4 +1,4 @@
-package io.github.krasnoludkolo.resolver;
+package io.github.krasnoludkolo.eifer;
 
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;

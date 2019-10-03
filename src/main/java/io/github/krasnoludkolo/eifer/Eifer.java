@@ -1,4 +1,4 @@
-package io.github.krasnoludkolo.resolver;
+package io.github.krasnoludkolo.eifer;
 
 import io.vavr.collection.List;
 import io.vavr.control.Either;

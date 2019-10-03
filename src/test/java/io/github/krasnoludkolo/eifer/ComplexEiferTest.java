@@ -1,9 +1,9 @@
-package io.github.krasnoludkolo.resolver;
+package io.github.krasnoludkolo.eifer;
 
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 
-import static io.github.krasnoludkolo.resolver.Eifer.*;
+import static io.github.krasnoludkolo.eifer.Eifer.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

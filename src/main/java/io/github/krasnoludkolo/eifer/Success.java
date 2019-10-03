@@ -1,4 +1,4 @@
-package io.github.krasnoludkolo.resolver;
+package io.github.krasnoludkolo.eifer;
 
 public final class Success {
 
