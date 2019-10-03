@@ -5,6 +5,7 @@ apply plugin: 'signing'
 apply plugin: 'jacoco'
 
 group 'io.github.krasnoludkolo'
+
 version '0.1'
 
 sourceCompatibility = 1.11
@@ -35,7 +36,6 @@ task sourcesJar(type: Jar) {
 }
 
 artifacts {
-    archives jar
 
     archives javadocJar
     archives sourcesJar
@@ -74,9 +74,9 @@ uploadArchives {
                 }
 
                 scm {
-                    url 'scm:git@github.com:krasnoludkolo/haste.git'
-                    connection 'scm:git@github.com:krasnoludkolo/haste.git'
-                    developerConnection 'scm:git@github.com:krasnoludkolo/haste.git'
+                    url 'scm:git@github.com:krasnoludkolo/eifer.git'
+                    connection 'scm:git@github.com:krasnoludkolo/eifer.git'
+                    developerConnection 'scm:git@github.com:krasnoludkolo/eifer.git'
                 }
 
                 developers {
