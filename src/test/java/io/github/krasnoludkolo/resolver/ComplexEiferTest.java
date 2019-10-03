@@ -3,11 +3,11 @@ package io.github.krasnoludkolo.resolver;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 
-import static io.github.krasnoludkolo.resolver.Resolver.*;
+import static io.github.krasnoludkolo.resolver.Eifer.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ComplexResolverTest {
+class ComplexEiferTest {
 
     private final static Action<Integer> RETURN_ONE = () -> 1;
     private final static Condition<Error> TRUE = () -> Either.right(new Success());

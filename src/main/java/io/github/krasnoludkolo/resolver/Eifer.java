@@ -3,9 +3,9 @@ package io.github.krasnoludkolo.resolver;
 import io.vavr.collection.List;
 import io.vavr.control.Either;
 
-public final class Resolver {
+public final class Eifer {
 
-    private Resolver() {
+    private Eifer() {
     }
 
     public static <T> T perform(Action<T> action) {

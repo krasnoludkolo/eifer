@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class SimpleResolverTest {
+class SimpleEiferTest {
 
     private final static Action<Integer> RETURN_ONE = () -> 1;
     private final static Condition<Error> TRUE = () -> Either.right(new Success());
@@ -14,14 +14,14 @@ class SimpleResolverTest {
 
     @Test
     void shouldDoActionWithoutConditions() {
-        int result = Resolver.perform(RETURN_ONE);
+        int result = Eifer.perform(RETURN_ONE);
 
         assertEquals(1, result);
     }
 
     @Test
     void shouldDoActionWithTrueCondition() {
-        int result = Resolver
+        int result = Eifer
                 .when(TRUE)
                 .perform(RETURN_ONE)
                 .get();
@@ -31,7 +31,7 @@ class SimpleResolverTest {
 
     @Test
     void shouldReturnErrorWithFalseCondition() {
-        Either<Error, Integer> result = Resolver
+        Either<Error, Integer> result = Eifer
                 .when(FALSE)
                 .perform(RETURN_ONE);
 
@@ -40,7 +40,7 @@ class SimpleResolverTest {
 
     @Test
     void shouldDoActionWithAllTrueConditions() {
-        int result = Resolver
+        int result = Eifer
                 .when(
                         TRUE,
                         TRUE
@@ -53,7 +53,7 @@ class SimpleResolverTest {
 
     @Test
     void shouldReturnErrorWithFalseConditions() {
-        Either<Error, Integer> result = Resolver
+        Either<Error, Integer> result = Eifer
                 .when(
                         FALSE,
                         TRUE
@@ -65,7 +65,7 @@ class SimpleResolverTest {
 
     @Test
     void shouldReturnErrorWithAllOrFalseConditions() {
-        Either<Error, Integer> result = Resolver
+        Either<Error, Integer> result = Eifer
                 .when(
                         FALSE,
                         TRUE
