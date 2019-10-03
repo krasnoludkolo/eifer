@@ -2,6 +2,8 @@
 
 Simplify your conditions with _eifer_.
 
+_Eifer_ uses [Either](https://www.vavr.io/vavr-docs/#_either) class from [vavr](https://github.com/vavr-io/vavr/)
+
 Example:
 
 ```java
